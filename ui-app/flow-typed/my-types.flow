@@ -1,0 +1,25 @@
+// @flow
+
+declare module 'my-types' {
+
+  declare type QueryParams = {
+    cFromDate: string,
+    cToDate: string,
+    pFromDate: string,
+    pToDate: string,
+    country: string
+  }
+
+  declare type QueryParamsKey = $Keys<QueryParams>
+
+  declare type QueryLoadingState = 'Loading' | 'Loaded' | 'Error'
+
+  declare type DashboardQuery = {
+      queryLoadingState : QueryLoadingState
+    , queryResult : any
+  }
+
+  declare type AppState = {
+    dashboard: ?DashboardQuery
+  }
+}
