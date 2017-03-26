@@ -2,7 +2,7 @@ drop table if exists ss_customers;
 CREATE TABLE ss_customers
     ("customerid" int, "datecreated" timestamp null, "firstpurchase" timestamp null)
 ;
-\copy ss_customers from ./data/customer.csv DELIMITER ',' CSV HEADER
+\copy ss_customers from ../data/customer.csv DELIMITER ',' CSV HEADER
 create index on ss_customers (customerid);
 create index on ss_customers (datecreated desc);
 
@@ -11,7 +11,7 @@ drop table if exists ss_locations;
 CREATE TABLE ss_locations
     ("locationid" int, "code" varchar(2), "name" varchar(60))
 ;
-\copy ss_locations from ./data/location.csv DELIMITER ',' CSV HEADER
+\copy ss_locations from ../data/location.csv DELIMITER ',' CSV HEADER
 create index on ss_locations (locationid);
 create index on ss_locations (code);
 
@@ -19,8 +19,9 @@ drop table if exists ss_sales;
 CREATE TABLE ss_sales
     ("salesid" int, "customerid" int, "locationid" int, "saletime" timestamp, "total" decimal)
 ;
-\copy ss_sales from ./data/sales.csv DELIMITER ',' CSV HEADER
+\copy ss_sales from ../data/sales.csv DELIMITER ',' CSV HEADER
 create index on ss_sales (salesid);
+create index on ss_sales (customerid);
 create index on ss_sales (locationid);
 create index on ss_sales (saletime desc);
 create index on ss_sales (saletime asc);
@@ -30,7 +31,7 @@ drop table if exists ss_saleitems;
 CREATE TABLE ss_saleitems
     ("salesid" int, "saleitemid" int, "saletime" timestamp, "returnfromsaleitemid" int, "quantity" decimal, "fullprice" decimal)
 ;
-\copy ss_saleitems from ./data/saleitems.csv DELIMITER ',' CSV HEADER
+\copy ss_saleitems from ../data/saleitems.csv DELIMITER ',' CSV HEADER
 create index on ss_saleitems (salesid);
 create index on ss_saleitems (saleitemid);
 create index on ss_saleitems (returnfromsaleitemid);
@@ -59,15 +60,3 @@ alter table ss_sales add column is_a_return_from_these_salesids int[] null;
 
 alter table ss_sales add column has_been_returned_from_these_salesids int[] null;
 -- update public.ss_sales s set has_been_returned_from_these_salesids = (SELECT array_agg(distinct si.salesid) as has_been_returned_from_these_salesids from public.ss_saleitems si where si.is_a_return_from_salesid = s.salesid);
-
---
---
-
--- drop table if exists ss_purchases;
--- CREATE TABLE ss_purchases
---     ("saletime" timestamp, "customerid" int, "total" decimal, "locationid" int, purchaseid int)
--- ;
--- \copy ss_purchases from ~/Downloads/ss_purchases.csv DELIMITER ',' CSV HEADER
--- create index on ss_purchases (salesid);
--- create index on ss_purchases (customerid);
--- create index on ss_purchases (saletime);

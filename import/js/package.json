@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "import_1": "psql -f ../import.sql",
+    "import_1": "psql -f import.sql",
     "import_2": "babel-node set_sales_is_a_return_from_these_salesids.js", 
     "import_3": "babel-node set_sales_has_been_returned_from_these_salesids.js",
     "create_purchases": "babel-node create_purchases_table.js",
