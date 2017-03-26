@@ -5,3 +5,10 @@ Put the following CSV files in this directory.
 ├── saleitems.csv
 └── sales.csv
 
+Or just 
+
+├── ss_purchases.csv
+
+If you already have ss_purchases.csv file.
+
+

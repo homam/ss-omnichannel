@@ -18,13 +18,13 @@ The easiest way is to install [nvm](https://github.com/creationix/nvm#installati
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
 ```
 
-After `nvm` installation, navigate to `omnichannel` directory and run:
+After `nvm` installation, navigate to `ss-omnichannel` directory and run:
 
 ```
 nvm use 7.2
 ```
 
-## Preparing Data
+## Preparing the Data
 
 **If you already have `ss_purchases.csv`**, copy the CSV file to `./import/data` directory and only run:
 
